@@ -21,6 +21,9 @@ spec:
     - - name: mypredictor
         template: mycodeblock1
   - name: mycodeblock1
+    metadata:
+        labels:
+            ai.sap.com/resourcePlan: starter
     inputs:
       artifacts:  # placeholder for cloud storage attachements
         - name: facialrecognition # a name for the placeholder
