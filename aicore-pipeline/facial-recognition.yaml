@@ -24,10 +24,10 @@ spec:
     metadata:
         labels:
             ai.sap.com/resourcePlan: starter
-    inputs:
-      artifacts:  # placeholder for cloud storage attachements
-        - name: facialrecognition # a name for the placeholder
-          path: /app/data/ # where to copy in the Dataset in the Docker image
+    # inputs:
+    #   artifacts:  # placeholder for cloud storage attachements
+    #     - name: facialrecognition # a name for the placeholder
+    #       path: /app/data/ # where to copy in the Dataset in the Docker image
     container:
       image: docker.io/yeekhee/facial-recognition-test:01 # Your docker image name
       command: ["/bin/sh", "-c"]
