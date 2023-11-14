@@ -25,7 +25,7 @@ spec:
           - name: credsyk
         containers:
         - name: kfserving-container
-          image: "docker.io/yeekhee/facial-recogniton-serve:01"
+          image: "docker.io/yeekhee/facial-recognition-serve:01"
           ports:
             - containerPort: 9001
               protocol: TCP
