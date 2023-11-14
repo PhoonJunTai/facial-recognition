@@ -4,16 +4,16 @@ metadata:
   name: facial-recognition-serve
   annotations:
     scenarios.ai.sap.com/description: "Facial Recognition Model"
-    scenarios.ai.sap.com/name: "facial-recognition-model"
+    scenarios.ai.sap.com/name: "face-recognition-model"
     executables.ai.sap.com/description: "Facial Recognition Model Serving executable"
     executables.ai.sap.com/name: "serve-exectuable"
   labels:
-    scenarios.ai.sap.com/id: "facial-recognition-serve"
-    ai.sap.com/version: "2.0.0"
+    scenarios.ai.sap.com/id: "facial-recognition" #scenarioID
+    ai.sap.com/version: "3.0.0"
 spec:
   inputs:
     artifacts:
-    - name: modelArtifact
+    - name: facialmodel
   template:
     apiVersion: "serving.kserve.io/v1beta1"
     metadata:
