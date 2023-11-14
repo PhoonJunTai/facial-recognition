@@ -38,7 +38,7 @@ spec:
             none:   # specify not to compress while uploading to cloud
               {}
     container:
-      image: docker.io/yeekhee/facial-recognition-test:02 # Your docker image name
+      image: docker.io/yeekhee/facial-recognition-test:03 # Your docker image name
       command: ["/bin/sh", "-c"]
       args:
         - "python /app/src/main.py"
