@@ -13,7 +13,7 @@ metadata:
 spec:
   inputs:
     artifacts:
-    - name: facialmodel
+    - name: modelArtifact
   template:
     apiVersion: "serving.kserve.io/v1beta1"
     metadata:
