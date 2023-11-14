@@ -24,7 +24,7 @@ spec:
   - name: mycodeblock1
     metadata:
         labels:
-            ai.sap.com/resourcePlan: starter
+            ai.sap.com/resourcePlan: infer.s
     inputs:
       artifacts:  # placeholder for cloud storage attachements
         - name: facialdataset # a name for the placeholder
