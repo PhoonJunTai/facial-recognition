@@ -8,8 +8,8 @@ metadata:
     executables.ai.sap.com/description: "Facial Recognition Model Serving executable"
     executables.ai.sap.com/name: "serve-exectuable"
   labels:
-    scenarios.ai.sap.com/id: "facial-recognition-serve" #scenarioID
-    ai.sap.com/version: "3.0.0"
+    scenarios.ai.sap.com/id: "facial-recognition"
+    ai.sap.com/version: "1.0.0"
 spec:
   inputs:
     artifacts:
