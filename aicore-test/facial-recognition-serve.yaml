@@ -1,0 +1,34 @@
+apiVersion: ai.sap.com/v1alpha1
+kind: ServingTemplate
+metadata:
+  name: facial-recognition-serve
+  annotations:
+    scenarios.ai.sap.com/description: "Facial Recognition Model"
+    scenarios.ai.sap.com/name: "facial-recognition-model"
+    executables.ai.sap.com/description: "Facial Recognition Model Serving executable"
+    executables.ai.sap.com/name: "serve-exectuable"
+  labels:
+    scenarios.ai.sap.com/id: "facial-recognition-serve"
+    ai.sap.com/version: "1.0.0"
+spec:
+  inputs:
+    artifacts:
+    - name: modelArtifact
+  template:
+    apiVersion: "serving.kserve.io/v1beta1"
+    metadata:
+      labels: |
+        ai.sap.com/resourcePlan: infer.l
+    spec: |
+      predictor:
+        imagePullSecrets:
+          - name: credsyk
+        containers:
+        - name: kfserving-container
+          image: "docker.io/yeekhee/facial-recogniton-serve:01"
+          ports:
+            - containerPort: 9001
+              protocol: TCP
+          env:
+            - name: STORAGE_URI
+              value: "{{inputs.artifacts.modelArtifact}}"
