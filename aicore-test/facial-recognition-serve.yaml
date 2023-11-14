@@ -13,7 +13,7 @@ metadata:
 spec:
   inputs:
     artifacts:
-    - name: modelArtifact
+    - name: facial-recognition-model
   template:
     apiVersion: "serving.kserve.io/v1beta1"
     metadata:
@@ -31,4 +31,4 @@ spec:
               protocol: TCP
           env:
             - name: STORAGE_URI
-              value: "{{inputs.artifacts.modelArtifact}}"
+              value: "{{inputs.artifacts.facial-recognition-model}}"
