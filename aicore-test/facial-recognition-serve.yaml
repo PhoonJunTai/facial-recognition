@@ -9,7 +9,7 @@ metadata:
     executables.ai.sap.com/name: "serve-exectuable"
   labels:
     scenarios.ai.sap.com/id: "facial-recognition"
-    ai.sap.com/version: "1.0.0"
+    ai.sap.com/version: "2.0.0"
 spec:
   inputs:
     artifacts:
@@ -26,9 +26,9 @@ spec:
         containers:
         - name: kfserving-container
           image: "docker.io/yeekhee/facial-recognition-serve:01"
-          ports:
-            - containerPort: 9001
-              protocol: TCP
+          # ports:
+          #   - containerPort: 9001
+          #     protocol: TCP
           env:
             - name: STORAGE_URI
               value: "{{inputs.artifacts.facialRecognitionModel}}"
