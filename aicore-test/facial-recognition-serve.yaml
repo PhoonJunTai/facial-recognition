@@ -26,9 +26,9 @@ spec:
         containers:
         - name: kfserving-container
           image: "docker.io/yeekhee/facial-recognition-serve:01"
-          ports:
-            - containerPort: 9001
-              protocol: TCP
+          # ports:
+          #   - containerPort: 9001
+          #     protocol: TCP
           env:
             - name: MODEL_LOCATION
               value: "{{inputs.artifacts.facialRecognitionModel}}"
