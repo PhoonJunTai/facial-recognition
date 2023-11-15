@@ -13,7 +13,7 @@ metadata:
 spec:
   inputs:
     artifacts:
-      - name: facialRecognitionModel
+    - name: facialRecognitionModel
   template:
     apiVersion: serving.kserve.io/v1beta1
     metadata:
@@ -24,14 +24,14 @@ spec:
         imagePullSecrets:
           - name: credsyk
         containers:
-          - name: kfserving-container
-            image: "docker.io/yeekhee/facial-recognition-serve:01"
-            ports:
-              - containerPort: 9001
-                protocol: TCP'
-            command: ["/bin/sh", "-c"]
+        - name: kfserving-container
+          image: "docker.io/yeekhee/facial-recognition-serve:01"
+          ports:
+            - containerPort: 9001
+              protocol: TCP'
+           command: ["/bin/sh", "-c"]
           env:
-          - name: MODEL_LOCATION
-            value: "{{inputs.artifacts.facialRecognitionModel}}"
-          - name: ENCODINGS_FILE
-            value: "/app/model/encodings.pkl"
+            - name: MODEL_LOCATION
+              value: "{{inputs.artifacts.facialRecognitionModel}}"
+            - name: ENCODINGS_FILE
+              value: "/app/model/encodings.pkl"
