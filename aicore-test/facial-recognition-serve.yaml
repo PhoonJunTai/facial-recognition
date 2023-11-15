@@ -1,15 +1,15 @@
 apiVersion: ai.sap.com/v1alpha1
 kind: ServingTemplate
 metadata:
-  name: facial-recognition-serve
+  name: face-recognition-serve
   annotations:
-    scenarios.ai.sap.com/description: "Facial Recognition Model"
-    scenarios.ai.sap.com/name: "face-recognition-model"
-    executables.ai.sap.com/description: "Facial Recognition Model Serving executable"
-    executables.ai.sap.com/name: "serve-exectuable"
+    scenarios.ai.sap.com/description: "Face recognition"
+    scenarios.ai.sap.com/name: "face-recognition"
+    executables.ai.sap.com/description: "Face recognition serving executable"
+    executables.ai.sap.com/name: "face-recognition-executable"
   labels:
-    scenarios.ai.sap.com/id: "facial-recognition"
-    ai.sap.com/version: "2.0.0"
+    scenarios.ai.sap.com/id: "face-recognition"
+    ai.sap.com/version: "1.0.0"
 spec:
   inputs:
     artifacts:
@@ -25,10 +25,12 @@ spec:
           - name: credsyk
         containers:
         - name: kfserving-container
-          image: "docker.io/yeekhee/facial-recognition-serve:01"
-          # ports:
-          #   - containerPort: 9001
-          #     protocol: TCP
+          image: "docker.io/yeekhee/face-recognition-serve:01"
+          ports:
+            - containerPort: 9001
+              protocol: TCP
           env:
-            - name: STORAGE_URI
+            - name: MODEL_LOCATION
               value: "{{inputs.artifacts.facialRecognitionModel}}"
+            - name: ENCODINGS_FILE
+              value: "/app/model/encodings.pkl"
