@@ -6,32 +6,45 @@ metadata:
     scenarios.ai.sap.com/description: "Face recognition"
     scenarios.ai.sap.com/name: "face-recognition"
     executables.ai.sap.com/description: "Face recognition serving executable"
-    executables.ai.sap.com/name: "face-recognition-executable"
+    executables.ai.sap.com/name: "server"
+    artifacts.ai.sap.com/facialmodel.kind: "model" # Suggest the kind of artifact to input.
   labels:
     scenarios.ai.sap.com/id: "face-recognition"
-    ai.sap.com/version: "1.0.0"
+    ai.sap.com/version: "2.0.0"
 spec:
   inputs:
     artifacts:
-    - name: facialRecognitionModel
+      - name: facialRecognitionModel
+    parameters:
+      - name: greetmessage # placeholder name
+        type: string # required for every parameters
   template:
-    apiVersion: serving.kserve.io/v1beta1
+    apiVersion: "serving.kserve.io/v1beta1"
     metadata:
+      annotations: |
+        autoscaling.knative.dev/metric: concurrency   # condition when to scale
+        autoscaling.knative.dev/target: 1
+        autoscaling.knative.dev/targetBurstCapacity: 0
       labels: |
         ai.sap.com/resourcePlan: infer.l
     spec: |
       predictor:
         imagePullSecrets:
-        - name: credsyk
+          - name: credsyk
+        minReplicas: 1
+        maxReplicas: 5    # how much to scale
         containers:
         - name: kfserving-container
-          image: "docker.io/yeekhee/facial-recognition-serve:01"
+          image: "docker.io/yeekhee/facial-recognition-serve:02"
           ports:
-          - containerPort: 9001
-            protocol: TCP
+            - containerPort: 9001    # customizable port
+              protocol: TCP
           command: ["/bin/sh", "-c"]
+          args:
+            - >
+              set -e && echo "Starting" && gunicorn --chdir /app/src main:app -b 0.0.0.0:9001 # filename `main` flask variable `app`
           env:
-          - name: MODEL_LOCATION
-            value: "{{inputs.artifacts.facialRecognitionModel}}"
-          - name: ENCODINGS_FILE
-            value: "/app/model/encodings.pkl"
+            - name: STORAGE_URI # Required
+              value: "{{inputs.artifacts.housepricemodel}}" # Required reference from artifact name, see above
+            - name: greetingmessage # different name to avoid confusion
+              value: "{{inputs.parameters.greetmessage}}"
