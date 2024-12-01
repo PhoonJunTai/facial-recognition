@@ -9,7 +9,7 @@ metadata:
     executables.ai.sap.com/name: "server"
     artifacts.ai.sap.com/facialmodel.kind: "model" # Suggest the kind of artifact to input.
   labels:
-    scenarios.ai.sap.com/id: "face-recognition-serves"
+    scenarios.ai.sap.com/id: "face-recognition-servers"
     ai.sap.com/version: "17.0.0"
 spec:
   inputs:
