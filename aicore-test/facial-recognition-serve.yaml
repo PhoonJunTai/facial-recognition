@@ -14,7 +14,7 @@ metadata:
 spec:
   inputs:
     artifacts:
-      - name: facialRecognitionModel
+      - name: facialRecognitionOld
     parameters:
       - name: greetmessage # placeholder name
         type: string # required for every parameters
