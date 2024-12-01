@@ -1,7 +1,7 @@
 apiVersion: ai.sap.com/v1alpha1
 kind: ServingTemplate
 metadata:
-  name: face-recognition-serves
+  name: face-recognition-serve
   annotations:
     scenarios.ai.sap.com/description: "Face recognition backup"
     scenarios.ai.sap.com/name: "face-recognition5"
@@ -9,7 +9,7 @@ metadata:
     executables.ai.sap.com/name: "server"
     artifacts.ai.sap.com/facialmodel.kind: "model" # Suggest the kind of artifact to input.
   labels:
-    scenarios.ai.sap.com/id: "face-recognition-serves"
+    scenarios.ai.sap.com/id: "face-recognition-serve"
     ai.sap.com/version: "17.0.0"
 spec:
   inputs:
