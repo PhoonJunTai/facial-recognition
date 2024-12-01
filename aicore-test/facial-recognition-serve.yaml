@@ -41,8 +41,7 @@ spec:
               protocol: TCP
           command: ["/bin/sh", "-c"]
           args:
-            - >
-              set -e && echo "Starting" && gunicorn --chdir /app/src main:app -b 0.0.0.0:9001 # filename `main` flask variable `app`
+            - "set -e && echo "Starting" && gunicorn --chdir /app/src main:app -b 0.0.0.0:9001 # filename `main` flask variable `app`"
           env:
             - name: STORAGE_URI # Required
               value: "{{inputs.artifacts.facialRecognitionModel}}" # Required reference from artifact name, see above
