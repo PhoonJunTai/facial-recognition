@@ -3,7 +3,7 @@ kind: ServingTemplate
 metadata:
   name: face-recognition-serve
   annotations:
-    scenarios.ai.sap.com/description: "Face recognition"
+    scenarios.ai.sap.com/description: "Face recognition backup"
     scenarios.ai.sap.com/name: "face-recognition5"
     executables.ai.sap.com/description: "Face recognition serving executable"
     executables.ai.sap.com/name: "server"
