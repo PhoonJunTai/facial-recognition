@@ -1,16 +1,16 @@
 apiVersion: ai.sap.com/v1alpha1
 kind: ServingTemplate
 metadata:
-  name: face-recognition-servers
+  name: face-recognition-serve
   annotations:
-    scenarios.ai.sap.com/description: "Face recognition backup"
-    scenarios.ai.sap.com/name: "face-recognition5"
+    scenarios.ai.sap.com/description: "Face recognition"
+    scenarios.ai.sap.com/name: "face-recognition"
     executables.ai.sap.com/description: "Face recognition serving executable"
     executables.ai.sap.com/name: "server"
     artifacts.ai.sap.com/facialmodel.kind: "model" # Suggest the kind of artifact to input.
   labels:
     scenarios.ai.sap.com/id: "face-recognition-servers"
-    ai.sap.com/version: "17.0.0"
+    ai.sap.com/version: "16.0.0"
 spec:
   inputs:
     artifacts:
@@ -26,16 +26,16 @@ spec:
         autoscaling.knative.dev/target: 1
         autoscaling.knative.dev/targetBurstCapacity: 0
       labels: |
-        ai.sap.com/resourcePlan: infer.s
+        ai.sap.com/resourcePlan: infer.l
     spec: |
       predictor:
         imagePullSecrets:
-          - name: facerecog
+          - name: credsyk
         minReplicas: 1
         maxReplicas: 5    # how much to scale
         containers:
         - name: kfserving-container
-          image: "docker.io/juntaiphoon/recognition:initial"
+          image: "docker.io/yeekhee/facial-recognition-serve:16.0"
           ports:
             - containerPort: 9001    # customizable port
               protocol: TCP
