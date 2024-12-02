@@ -4,12 +4,12 @@ metadata:
   name: face-recognition-serves123
   annotations:
     scenarios.ai.sap.com/description: "Face recognition"
-    scenarios.ai.sap.com/name: "face-recognition-serves"
+    scenarios.ai.sap.com/name: "face-recog"
     executables.ai.sap.com/description: "Face recognition serving executable"
     executables.ai.sap.com/name: "server"
     artifacts.ai.sap.com/facialmodel.kind: "model" # Suggest the kind of artifact to input.
   labels:
-    scenarios.ai.sap.com/id: "face-recognition-servess"
+    scenarios.ai.sap.com/id: "face-recog"
     ai.sap.com/version: "16.0.0"
 spec:
   inputs:
@@ -40,8 +40,9 @@ spec:
             - containerPort: 9001    # customizable port
               protocol: TCP
           command: ["/bin/sh", "-c"]
-          # args:
-          #   - "set -e && echo "Starting" && gunicorn --chdir /app/src main:app -b 0.0.0.0:9001 # filename `main` flask variable `app`"
+          args:
+            - >
+              set -e && echo "Starting" && gunicorn --chdir /app/src main:app -b 0.0.0.0:9001 # filename `main` flask variable `app`
           env:
             - name: STORAGE_URI # Required
               value: "{{inputs.artifacts.facialRecognitionModel}}" # Required reference from artifact name, see above
